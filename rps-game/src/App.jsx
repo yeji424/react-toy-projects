@@ -79,7 +79,6 @@ const App = () => {
           <div className={css.button_group}>
             {Object.entries(choice).map(([key, value]) => (
               <Button
-                key={key}
                 choiceKey={key}
                 choice={value}
                 onClick={handleUserChoice}
