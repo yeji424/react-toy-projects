@@ -14,21 +14,17 @@
   transition: all 0.2s;
   font-weight: 500;
 }
-
 .button:hover:not(:disabled) {
   background-color: #e5e7eb;
 }
-
 .button:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(101, 101, 101, 0.5);
 }
-
 .button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
 .buttonImg {
   width: 32px;
   height: 32px;
