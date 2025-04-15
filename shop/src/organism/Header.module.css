@@ -6,7 +6,7 @@
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 99999; /* 최상단 고정 */
 }
 .con {
   border: 1px solid red;
@@ -17,6 +17,8 @@
   justify-content: space-between;
   align-items: center;
 }
+
+/* 메뉴 기본 스타일 (데스크탑) */
 .gnb {
   border: blue 2px solid;
   display: flex;
@@ -36,18 +38,23 @@
   border: solid red 1px;
   position: relative;
 }
+
+/* 메뉴 밑줄 애니메이션 효과 */
 .gnb nav a::before {
-  /*왼쪽 비포, 오른쪽 에프터인데 아에 ㅍ지션 지절할거면 before로 하셈*/
+  /*왼쪽 비포, 오른쪽 에프터인데 아에 포지션 지절할거면 before로 하셈*/
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%; /* 가운데서 시작해서 양쪽으로 넓어지도록 */
-  transform: translateX(-50%); /* 가운데서 시작해서 양쪽으로 넓어지도록 */
+  left: 50%; /* 가운데서 시작해서 */
+  transform: translateX(-50%); /* 양쪽으로 넓어지도록 */
   width: 0%;
   height: 2px;
   background-color: var(--dark-colors-accent-dark);
   transition: 0.3s;
 }
+
+
+/* 현재 페이지 or 호버 시 밑줄 표시 */
 .gnb nav a:hover::before,
 .gnb nav a.active::before {
   width: 100%;
@@ -59,6 +66,8 @@
 .gnb a:active {
   color: var(--dark-colors-accent-dark);
 }
+
+/* 햄버거 데스크탑에선 안 보임 */
 .ham {
   display: none;
   cursor: pointer;
@@ -69,18 +78,20 @@
   .gnb {
     display: flex;
     position: fixed;
-    width: 70%;
-    height: 100%;
+    width: 70%;    /* 화면의 70% 차지 */
+    height: 100%;  /* 전체 높이 */
     border: 2px solid blue;
     top: 0;
-    right: -100%;
+    right: -100%;  /* 기본 상태에선 오른쪽 바깥에 숨김 */
     background-color: white;
     flex-direction: column;
     padding-top: 200px;
     transition: 0.3s;
   }
+  
+  /* 햄버거 클릭 시 메뉴 보이기 */
   .gnb.on {
-    right: 0;
+    right: 0;     /* 오른쪽으로 들어오게 */
   }
   .gnb nav {
     display: block;

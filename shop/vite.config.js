@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      '@': path.resolve('./src'),
+      '@': path.resolve('./src'), // 이 부분이 중요
       '@components': path.resolve('./src/components'),
       '@hooks': path.resolve('./src/hooks'),
       '@pages': path.resolve('./src/pages'),

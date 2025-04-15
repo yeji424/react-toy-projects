@@ -63,6 +63,8 @@
   --fs26: 24px;
   --fs33: 33px;
   --fs64: 64px;
+
+  line-height: 1.6;
 }
 body {
   background-color: #eaeaea;

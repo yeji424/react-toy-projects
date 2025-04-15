@@ -1,0 +1,49 @@
+.mainSlider {
+  border: 3px solid blue;
+  height: 300;
+}
+.mainSlider > div > div {
+}
+/* /캡쳐 관련해서 */
+.imgWrap {
+  padding-top: 40%;
+  overflow: hidden;
+  border-radius: var(--fs16);
+  border: 3px solid red;
+  position: relative;
+}
+.imgWrap img {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.textWrap {
+  color: white;
+  border: 3px solid pink;
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  left: var(--fs33);
+  line-height: 1.25;
+}
+.textWrap > * {
+  margin-bottom: var(--fs12);
+}
+.title {
+  font-size: var(--fs20);
+}
+.more {
+  display: inline-block;
+  border: 1px solid; /* 폰트 컬러 자동 상속됨 */
+  transition: 0.3s;
+  padding: var(--fs8) var(--fs12);
+  border-radius: var(--fs8);
+}
+.more:hover {
+  background-color: var(--dark-colors-white-dark);
+  color: var(--dark-colors-black-dark);
+  border-color: var(--light-colors-accent-light);
+}
