@@ -4,7 +4,6 @@
 path {
   transition: 0.3s;
 }
-
 .logo:hover path:nth-child(1) {
   fill: #a59782;
 }
