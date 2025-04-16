@@ -9,7 +9,7 @@
   z-index: 99999; /* 최상단 고정 */
 }
 .con {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   max-width: 1200px;
   width: calc(100% - 4rem);
   margin: auto;
@@ -20,7 +20,7 @@
 
 /* 메뉴 기본 스타일 (데스크탑) */
 .gnb {
-  border: blue 2px solid;
+  /* border: blue 2px solid; */
   display: flex;
   align-items: center;
   gap: var(--fs33);
@@ -35,7 +35,7 @@
   padding: var(--fs16) var(--fs20);
 }
 .gnb nav a {
-  border: solid red 1px;
+  /* border: solid red 1px; */
   position: relative;
 }
 
@@ -52,7 +52,6 @@
   background-color: var(--dark-colors-accent-dark);
   transition: 0.3s;
 }
-
 
 /* 현재 페이지 or 호버 시 밑줄 표시 */
 .gnb nav a:hover::before,
@@ -78,20 +77,20 @@
   .gnb {
     display: flex;
     position: fixed;
-    width: 70%;    /* 화면의 70% 차지 */
-    height: 100%;  /* 전체 높이 */
-    border: 2px solid blue;
+    width: 70%; /* 화면의 70% 차지 */
+    height: 100%; /* 전체 높이 */
+    /* border: 2px solid blue; */
     top: 0;
-    right: -100%;  /* 기본 상태에선 오른쪽 바깥에 숨김 */
+    right: -100%; /* 기본 상태에선 오른쪽 바깥에 숨김 */
     background-color: white;
     flex-direction: column;
     padding-top: 200px;
     transition: 0.3s;
   }
-  
+
   /* 햄버거 클릭 시 메뉴 보이기 */
   .gnb.on {
-    right: 0;     /* 오른쪽으로 들어오게 */
+    right: 0; /* 오른쪽으로 들어오게 */
   }
   .gnb nav {
     display: block;

@@ -48,7 +48,7 @@
   --light-colors-white-light: #ffffff;
 
   /* Fonts */
-  --font-family: 'Noto Sans KR', 'DM Sans', sans-serif;
+  font-family: 'Noto Sans KR', 'DM Sans', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
