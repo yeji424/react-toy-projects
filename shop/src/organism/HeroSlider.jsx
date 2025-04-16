@@ -29,8 +29,8 @@ const HeroSlider = () => {
 
         setBanner(data)
         setLoading(false)
-      } catch (err) {
-        console.log('err----', err)
+      } catch (e) {
+        console.log('err----', e)
         setLoading(false)
       }
     }
