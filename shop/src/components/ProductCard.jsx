@@ -1,17 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import style from './ProductCard.module.css'
-const ProductCard = () => {
+const ProductCard = ({ data }) => {
   return (
     <div className={style.card}>
       <div className={style.imgWrap}>
-        <img src="/public/img/image1.jpg" alt="상품아이디" />
+        <img src={`/public/img/${data.img}`} alt={data.title} />
+        <span className={style.cate}>{data.category}</span>
+        <span className={style.discount}>{data.discount}%</span>
       </div>
       <div className={style.textWrap}>
-        <strong>상품명</strong>
-        <span>가격</span>
+        <strong className={style.title}>{data.title}</strong>
+        <span className={style.price}>{data.price}</span>
       </div>
-      <Link to={'/shop'}>상품 상세 페이지</Link>
+      <Link to={`/detail/${data.id}`} className={style.btnGoDetail}></Link>
     </div>
   )
 }

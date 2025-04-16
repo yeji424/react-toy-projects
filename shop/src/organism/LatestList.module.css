@@ -6,9 +6,6 @@
   /* 얼라인 컨텐트는 아이템보다 부모 사이즈가 클 때에만 적용됨 */
   gap: var(--fs33);
 }
-.listCon > * {
-  border: 3px solid blueviolet;
-}
 .more {
   font-size: var(--fs12);
   transition: 0.3s;
@@ -31,9 +28,13 @@
 .list {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: var(--fs20);
 }
 .list > li {
-  border: 1px solid green;
+}
+@media (max-width: 600px) {
+  .list {
+    grid-template-columns: repeat(auto-fill, 1fr);
+  }
 }

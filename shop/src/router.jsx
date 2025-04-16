@@ -21,6 +21,7 @@ const ShopPage = lazy(() => {
 })
 const CartPage = lazy(() => import('./pages/CartPage'))
 const BlogPage = lazy(() => import('./pages/BlogPage'))
+const DetailPage = lazy(() => import('./pages/DetailPage'))
 
 import Loading from './components/Loading'
 
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       { path: '/about', element: <AboutPage /> },
       { path: '/blog', element: <BlogPage /> },
       { path: '/cart', element: <CartPage /> },
+      { path: '/detail/:productId', element: <DetailPage /> },
     ],
   },
   {
