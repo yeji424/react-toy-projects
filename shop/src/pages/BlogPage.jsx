@@ -1,11 +1,11 @@
 import React from 'react'
 
-const BlogPage = () => {
+const AboutPage = () => {
   return (
     <main>
-      <h2>BlogPage</h2>
+      <h2>AboutPage</h2>
     </main>
   )
 }
 
-export default BlogPage
+export default AboutPage
