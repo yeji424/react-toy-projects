@@ -1,5 +1,5 @@
-import React, { lazy, Suspense } from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import React, { lazy } from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Default from './layout/Default'
 import NotFound from './pages/NotFound'
 
@@ -11,8 +11,8 @@ import NotFound from './pages/NotFound'
 
 // lazy보다 위에 기입해야 함
 // import Loading from './components/Loading'
-import DetailPage from './pages/DetailPage'
 import { detailPageLoader } from './loaders/productsLoaders'
+import DetailPage from './pages/DetailPage'
 
 const MainPage = lazy(() => import('./pages/MainPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
@@ -39,4 +39,6 @@ const router = createBrowserRouter([
     ],
   },
 ])
-export default router
+export default function Router() {
+  return <RouterProvider router={router} fallbackElement={<div>로딩중...</div>} />
+}
