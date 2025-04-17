@@ -19,4 +19,13 @@ export default defineConfig({
       // 필요한 다른 경로도 추가 가능
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })

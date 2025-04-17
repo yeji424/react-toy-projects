@@ -40,8 +40,8 @@ const LatestList = () => {
       <div className={style.select}>
         옵션:
         <select
-          name="productCoun"
-          id="productCoun"
+          name="productCount"
+          id="productCount"
           value={pCount}
           onChange={e => setPCount(Number(e.target.value))}
         >
