@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import style from './Header.module.css'
 import Logo from '../components/Logo'
 import { useEffect, useState } from 'react'
+import { throttle } from '../utils/features'
 
 const Header = () => {
   const [isOn, setIsOn] = useState(false) // 햄버거 메뉴 열림 여부 상태
@@ -19,11 +20,11 @@ const Header = () => {
   }, [location.pathname])
 
   // 메뉴 닫기 조건 2 : 화면 크기 1100px 이상으로 변경되면 자동 닫기
-  const handleResize = () => {
+  const handleResize = throttle(() => {
     if (window.innerWidth > 1100) {
       setIsOn(false)
     }
-  }
+  }, 1000)
 
   // 리사이즈 이벤트 등록 및 해제
   useEffect(() => {

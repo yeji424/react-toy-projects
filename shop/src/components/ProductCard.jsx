@@ -7,7 +7,7 @@ const ProductCard = ({ data }) => {
   return (
     <div className={style.card}>
       <div className={style.imgWrap}>
-        <img src={`/public/img/${data.img}`} alt={data.title} />
+        <img src={`/img/${data.img}`} alt={data.title} />
         <span className={style.cate}>{data.category}</span>
         {data.discount > 0 && <span className={style.discount}>{data.discount}%</span>}
       </div>
