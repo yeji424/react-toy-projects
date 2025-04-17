@@ -31,8 +31,6 @@
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: var(--fs20);
 }
-.list > li {
-}
 @media (max-width: 600px) {
   .list {
     grid-template-columns: repeat(auto-fill, 1fr);
