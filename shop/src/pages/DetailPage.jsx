@@ -1,30 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getProductById } from '../api/productsApi'
+import React from 'react'
+import { useLoaderData } from 'react-router-dom'
+import style from './DetailPage.module.css'
+
 const DetailPage = () => {
-  // const test = useParams()
-  // console.log('productId', test)
-
-  const { productId } = useParams()
-  // console.log('productId', productId)
-
-  const [product, setProduct] = useState({})
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const res = await getProductById(productId)
-        setProduct(res)
-      } catch (e) {
-        console.error(e)
-      }
-    }
-    fetchProduct()
-  }, [productId])
+  const { product, relatedProducts } = useLoaderData()
+  console.log('DetailPage : product', product)
+  console.log('DetailPage : relatedProducts', relatedProducts)
 
   return (
     <main>
-      <h2>DetailPage</h2>
-      <p>{product.title}</p>
+      <h2> Detail Page</h2>
+      <div className={style.detailCon}>
+        <div className={style.imgWrap}>
+          <img src="/img/image1.jpg" alt="상품명" />
+        </div>
+        <div className={style.infoWrap}>
+          <p className={style.title}>pName</p>
+          <p className={style.price}>pPrice</p>
+          <p className={style.discount}>pDiscount</p>
+          <p className={style.category}>pCategory</p>
+          <div className={style.btnWrap}>
+            <div className={style.counterArea}>
+              <button>-</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+            <button className={style.addBtn}>Add Cart</button>
+          </div>
+        </div>
+      </div>
+      <div>Tap Menu</div>
+      <div>Relative Products List</div>
     </main>
   )
 }

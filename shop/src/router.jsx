@@ -9,15 +9,16 @@ import NotFound from './pages/NotFound'
 // import BlogPage from './pages/BlogPage'
 // import CartPage from './pages/CartPage'
 
+// lazy보다 위에 기입해야 함
+// import Loading from './components/Loading'
+import DetailPage from './pages/DetailPage'
+import { detailPageLoader } from './loaders/productsLoaders'
+
 const MainPage = lazy(() => import('./pages/MainPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const ShopPage = lazy(() => import('./pages/ShopPage'))
 const BlogPage = lazy(() => import('./pages/BlogPage'))
 const CartPage = lazy(() => import('./pages/CartPage'))
-
-import Loading from './components/Loading'
-import DetailPage from './pages/DetailPage'
-import { getProductById } from './api/productsApi'
 
 const router = createBrowserRouter([
   {
@@ -33,14 +34,7 @@ const router = createBrowserRouter([
       {
         path: '/detail/:productId',
         element: <DetailPage />,
-        loader: async ({ params }) => {
-          try {
-            const product = await getProductById(params.productId)
-            return product
-          } catch (err) {
-            console.log('err----', err)
-          }
-        },
+        loader: detailPageLoader,
       },
     ],
   },
