@@ -7,7 +7,7 @@ export const detailPageLoader = async ({ params }) => {
   try {
     await delay(1000)
     const product = await getProductById(params.productId)
-    console.log('productsLoaders.js:product', product.category)
+    // console.log('productsLoaders.js:product', product.category)
 
     if (!product) {
       throw new Response('상품이 존재하지 않습니다.', {
@@ -21,9 +21,12 @@ export const detailPageLoader = async ({ params }) => {
     const filteredRelatedProducts = relatedProducts.filter(
       relatedProduct => relatedProduct.id !== product.id
     )
-    return { product, filteredRelatedProducts }
+    return {
+      product,
+      relatedProducts: filteredRelatedProducts,
+    }
   } catch (e) {
     console.error(e)
-    throw new Response('상 데이터 불러오던 중 오류 발생', { status: e.status || 500 })
+    throw new Response('데이터 불러오던 중 오류 발생', { status: e.status || 500 })
   }
 }

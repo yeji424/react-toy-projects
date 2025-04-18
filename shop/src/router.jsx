@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound'
 // import Loading from './components/Loading'
 import { detailPageLoader } from './loaders/productsLoaders'
 import DetailPage from './pages/DetailPage'
+import { cartPageLoader } from './loaders/cartLoaders'
 
 const MainPage = lazy(() => import('./pages/MainPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       { path: '/shop', element: <ShopPage /> },
       { path: '/about', element: <AboutPage /> },
       { path: '/blog', element: <BlogPage /> },
-      { path: '/cart', element: <CartPage /> },
+      { path: '/cart', element: <CartPage />, loader: cartPageLoader },
       {
         path: '/detail/:productId',
         element: <DetailPage />,

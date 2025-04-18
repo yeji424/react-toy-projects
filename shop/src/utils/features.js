@@ -1,5 +1,5 @@
 // 가격 단위 함수
-export const formmatCurrency = number => {
+export const formatCurrency = number => {
   return number.toLocaleString() + 'won'
 }
 

@@ -1,0 +1,32 @@
+.tabBtnWrap {
+  border-bottom: 1px solid var(--dark-colors-light-gray-dark);
+}
+.tabBtnWrap button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: var(--fs12) var(--fs20);
+  border-bottom: 3px solid transparent;
+  transition: 0.3s;
+}
+.tabBtnWrap button:hover,
+.tabBtnWrap button:focus,
+.tabBtnWrap button:active {
+  border-color: var(--dark-colors-accent-dark);
+}
+.tabContentWrap {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.tabContentWrap.visible {
+  display: block;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,11 @@
+.con {
+  overflow: hidden;
+  border: 1px solid blue;
+  padding-bottom: 50px;
+}
+.relatedSlider {
+  overflow: visible;
+}
+.relatedSlider > div:nth-of-type(2) {
+  border: purple solid 1px;
+}

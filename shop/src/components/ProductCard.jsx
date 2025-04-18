@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import style from './ProductCard.module.css'
-import { formmatCurrency } from '../utils/features'
+import { formatCurrency } from '../utils/features'
 
 const ProductCard = ({ data }) => {
   return (
@@ -13,7 +13,7 @@ const ProductCard = ({ data }) => {
       </div>
       <div className={style.textWrap}>
         <strong className={style.title}>{data.title}</strong>
-        <span className={style.price}>{formmatCurrency(data.price)}</span>
+        <span className={style.price}>{formatCurrency(data.price)}</span>
       </div>
       <Link to={`/detail/${data.id}`} className={style.btnGoDetail}></Link>
     </div>
