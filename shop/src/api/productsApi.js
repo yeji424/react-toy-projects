@@ -26,13 +26,9 @@ export const getProductById = async id => {
 
 // 카테고리별 상품 가져오기
 export const getProductsByCategory = async (category, limit = 10) => {
-  try {
-    return await apiRequest(
-      '/',
-      { category, _limit: limit },
-      '카테고리별 상품을 불러오는 중 오류 발생'
-    )
-  } catch (e) {
-    return [] // 에러 발생 시 빈 배열 반환
-  }
+  return await apiRequest(
+    '',
+    { category, _limit: limit },
+    '카테고리별 상품을 불러오는 중 오류 발생'
+  )
 }

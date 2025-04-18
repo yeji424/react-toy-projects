@@ -1,5 +1,6 @@
-main > * {
+.detailPage > * {
   margin-bottom: var(--fs33);
+  border: 1px green solid;
 }
 .detailCon {
   display: flex;
@@ -72,4 +73,14 @@ main > * {
   flex: 1;
   border-radius: var(--fs8);
   border: 1px solid var(--dark-colors-accent-dark);
+}
+
+@media (max-width: 600px) {
+  .detailCon {
+    flex-direction: column;
+  }
+
+  .imgWrap {
+    width: 100%;
+  }
 }
