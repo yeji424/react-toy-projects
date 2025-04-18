@@ -18,7 +18,7 @@ const MainPage = lazy(() => import('./pages/MainPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const ShopPage = lazy(() => import('./pages/ShopPage'))
 const BlogPage = lazy(() => import('./pages/BlogPage'))
-// const CartPage = lazy(() => import('./pages/CartPage'))
+const CartPage = lazy(() => import('./pages/CartPage'))
 
 const router = createBrowserRouter([
   {

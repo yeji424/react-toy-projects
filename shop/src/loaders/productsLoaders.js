@@ -24,6 +24,6 @@ export const detailPageLoader = async ({ params }) => {
     return { product, filteredRelatedProducts }
   } catch (e) {
     console.error(e)
-    throw new Response('상품 데이터 불러오던 중 오류 발생', { status: e.status || 500 })
+    throw new Response('상 데이터 불러오던 중 오류 발생', { status: e.status || 500 })
   }
 }
