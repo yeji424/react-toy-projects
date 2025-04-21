@@ -30,6 +30,26 @@ export const addToCart = async cartItem => {
       return res.data
     }
   } catch (e) {
-    console.log('error | ', e)
+    console.error('error | ', e)
+  }
+}
+
+export const updateCartItemCnt = async (id, count) => {
+  try {
+    const cartItem = await axios.get(`/api/cart/${id}`)
+    const updateItem = { ...cartItem.data, count }
+    const res = await axios.put(`/api/cart/${id}`, updateItem)
+    return res.data
+  } catch (e) {
+    console.error('error | ', e)
+  }
+}
+
+export const removeFromCart = async id => {
+  try {
+    const res = await axios.delete(`/api/cart/${id}`)
+    return res.data
+  } catch (e) {
+    console.error('error | ', e)
   }
 }

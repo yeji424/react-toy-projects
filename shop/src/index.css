@@ -76,6 +76,7 @@ footer {
   max-width: 1200px;
   width: calc(100% - 4rem);
   margin: auto;
+  line-height: 1.6;
 }
 main {
   padding: 100px 0 var(--fs33);
@@ -86,6 +87,7 @@ footer {
 main h2 {
   font-size: var(--fs33);
   color: var(--dark-colors-accent-dark);
+  margin-bottom: var(--fs26);
 }
 a {
   text-decoration: none;

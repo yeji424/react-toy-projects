@@ -1,0 +1,122 @@
+.cartList {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  gap: var(--fs12);
+}
+.cartItem {
+  /* border: 2px solid blue; */
+  margin-bottom: var(--fs12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--fs12);
+  border-radius: var(--fs8);
+  padding: var(--fs8);
+  background-color: var(--dark-colors-white-dark);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.cartItem:hover {
+  transform: translateY(-5px);
+}
+.cartItem > div {
+  /* border: 2px solid green; */
+}
+/* 이미지 할 때! */
+.cartImg {
+  border-radius: var(--fs12);
+  overflow: hidden;
+  width: 100px;
+}
+.cartImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.title {
+  flex: 1;
+  /* 가장 길게? */
+  cursor: pointer;
+}
+.title:hover {
+  font-weight: bold;
+}
+.price,
+.sum {
+  width: 110px;
+  text-align: right;
+}
+.btnArea {
+  background-color: #dcdbdb;
+  border-radius: var(--fs8);
+}
+.btnArea button {
+  border: none;
+  outline: none;
+  padding: var(--fs8) var(--fs12);
+  font-size: var(--fs16);
+  background-color: transparent;
+}
+.btnArea span {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+}
+.deleteBtn {
+  padding: var(--fs12);
+  cursor: pointer;
+}
+.deleteBtn:hover {
+  color: var(--light-colors-errors-light);
+}
+.totalPrice {
+  text-align: right;
+  font-size: var(--fs26);
+  color: var(--dark-colors-accent-dark);
+}
+@media (max-width: 900px) {
+  .cartItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr 50px;
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .cartImg {
+    grid-column: 1/2;
+    grid-row: 1/5;
+    width: 100%;
+    height: 100%;
+  }
+  .title,
+  .price,
+  .sum {
+    grid-column: 2/4;
+    width: 100%;
+  }
+  .btnArea {
+    order: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .deleteBtn {
+    order: 5;
+  }
+}
+
+@media (max-width: 500px) {
+  .cartItem {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .cartItem > div {
+    width: 100%;
+  }
+  .cartItem > .btnArea {
+    width: calc(100% - 80px);
+  }
+  .cartItem > .deleteBtn {
+    width: 50px;
+  }
+}
