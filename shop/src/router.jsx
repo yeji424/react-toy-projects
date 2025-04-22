@@ -11,7 +11,7 @@ import NotFound from './pages/NotFound'
 
 // lazy보다 위에 기입해야 함
 // import Loading from './components/Loading'
-import { detailPageLoader } from './loaders/productsLoaders'
+import { detailPageLoader, shopPageLoader } from './loaders/productsLoaders'
 import DetailPage from './pages/DetailPage'
 import { cartPageLoader } from './loaders/cartLoaders'
 
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { path: '', element: <MainPage /> },
-      { path: '/shop', element: <ShopPage /> },
+      { path: '/shop', element: <ShopPage />, loader: shopPageLoader },
       { path: '/about', element: <AboutPage /> },
       { path: '/blog', element: <BlogPage /> },
       { path: '/cart', element: <CartPage />, loader: cartPageLoader },
