@@ -1061,5 +1061,31 @@
       "discount": 0,
       "count": 1
     }
+  ],
+  "board": [
+    {
+      "id": "1",
+      "boardDesc": "내용 입력 되는 곳",
+      "createAt": "2025.04.24",
+      "isDone": false
+    },
+    {
+      "id": "2",
+      "boardDesc": "222내용 입력 되는 곳",
+      "createAt": "2025.04.25",
+      "isDone": false
+    },
+    {
+      "id": "3",
+      "boardDesc": "333내용 입력 되는 곳",
+      "createAt": "2025.04.24",
+      "isDone": false
+    },
+    {
+      "id": "4",
+      "boardDesc": "444내용 입력 되는 곳",
+      "createAt": "2025.04.25",
+      "isDone": false
+    }
   ]
 }
