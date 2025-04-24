@@ -2,6 +2,10 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import Router from './router.jsx'
 
+// Redux
+import { Provider } from 'react-redux'
+import store from './store/store.js'
+
 // Bootstrap CSS, Icons, JS
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -15,6 +19,8 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router />
+    <Provider store={store}>
+      <Router />
+    </Provider>
   </StrictMode>
 )

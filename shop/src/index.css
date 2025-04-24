@@ -30,7 +30,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html,
+body {
+  scroll-behavior: auto;
+}
 :root {
   /* Colors */
   --dark-colors-accent-dark: #b4a186;
@@ -68,6 +71,26 @@
 }
 body {
   background-color: #eaeaea;
+}
+/* darkMode */
+body.dark-mode {
+  background-color: var(--dark-colors-gray-dark);
+  color: var(--dark-colors-white-dark);
+}
+body.dark-mode header {
+  background: transparent;
+}
+body.dark-mode path {
+  fill: var(--dark-colors-accent-dark);
+}
+
+@media (max-width: 1100px) {
+  body.dark-mode nav {
+    color: var(--dark-colors-gray-dark);
+  }
+  body.dark-mode nav + div {
+    color: var(--dark-colors-gray-dark);
+  }
 }
 
 main,

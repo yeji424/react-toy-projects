@@ -37,7 +37,7 @@ export const shopPageLoader = async ({ request }) => {
   const url = new URL(request.url)
   //_page=2&_per_page=2
   const page = url.searchParams.get('_page') || 1
-  const per_page = url.searchParams.get('_per_page') || 12
+  const per_page = url.searchParams.get('_per_page') || 6
   const category = url.searchParams.get('category') || ''
   const sort = url.searchParams.get('_sort') || ''
 

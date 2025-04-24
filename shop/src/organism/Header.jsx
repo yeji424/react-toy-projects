@@ -4,6 +4,8 @@ import style from './Header.module.css'
 import Logo from '../components/Logo'
 import { useEffect, useState } from 'react'
 import { throttle } from '../utils/features'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleTheme } from '@/store/themeSlice'
 
 const Header = () => {
   const [isOn, setIsOn] = useState(false) // 햄버거 메뉴 열림 여부 상태
@@ -32,7 +34,43 @@ const Header = () => {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [handleResize])
+
+  // dark mode
+  // const [isDarkMode, setIsDarkMode] = useState(false)
+  // useEffect(() => {
+  //   const savedTheme = localStorage.getItem('theme')
+  //   if (savedTheme !== null) {
+  //     const parsedTheme = JSON.parse(savedTheme) // 파싱을 위함
+  //     setIsDarkMode(parsedTheme)
+  //     document.body.classList.toggle('dark-mode', parsedTheme)
+  //   }
+  // }, [])
+
+  // const handleThemeToggle = () => {
+  //   const newTheme = !isDarkMode
+  //   setIsDarkMode(newTheme)
+  //   localStorage.setItem('theme', JSON.stringify(newTheme))
+  //   document.body.classList.toggle('dark-mode', newTheme)
+  // }
+
+  const dispatch = useDispatch()
+
+  const { isDarkMode } = useSelector(state => state.theme)
+
+  useEffect(() => {
+    localStorage.setItem('theme', JSON.stringify(isDarkMode))
+
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode')
+    } else {
+      document.body.classList.remove('dark-mode')
+    }
+  }, [isDarkMode])
+
+  const handleThemeToggle = () => {
+    dispatch(toggleTheme())
+  }
 
   return (
     <header className={style.hd}>
@@ -48,11 +86,17 @@ const Header = () => {
             <CustomNavLink to={'/shop'} label={'shop'} />
             <CustomNavLink to={'/about'} label={'about'} />
             <CustomNavLink to={'/blog'} label={'blog'} />
+            <CustomNavLink to={'/board'} label={'board'} />
           </nav>
           <div className={style.icon}>
             <CustomIconLink to={'/search'} icon={'bi-search'} />
             <CustomIconLink to={'/mypage'} icon={'bi-person-circle'} />
             <CustomIconLink to={'/cart'} icon={'bi-basket'} />
+            <i
+              className={`p-2 bi bi-${isDarkMode ? 'moon' : 'sun'}`}
+              style={{ cursor: 'pointer' }}
+              onClick={handleThemeToggle}
+            ></i>
           </div>
         </div>
         {/* 햄버거 버튼 */}

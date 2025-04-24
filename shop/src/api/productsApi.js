@@ -6,6 +6,7 @@ import axios from 'axios'
 const apiRequest = async (endpoint, params = {}, errorMessage = '요청 중 오류가 발생했습니다') => {
   try {
     const res = await axios.get(`/api/products${endpoint}`, { params })
+    console.log('res---------------', res)
     return res.data
   } catch (e) {
     console.error(errorMessage, e)

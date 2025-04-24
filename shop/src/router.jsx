@@ -19,6 +19,7 @@ const MainPage = lazy(() => import('./pages/MainPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const ShopPage = lazy(() => import('./pages/ShopPage'))
 const BlogPage = lazy(() => import('./pages/BlogPage'))
+const BoardPage = lazy(() => import('./pages/BoardPage'))
 const CartPage = lazy(() => import('./pages/CartPage'))
 
 const router = createBrowserRouter([
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: '/shop', element: <ShopPage />, loader: shopPageLoader },
       { path: '/about', element: <AboutPage /> },
       { path: '/blog', element: <BlogPage /> },
+      { path: '/board', element: <BoardPage /> },
       { path: '/cart', element: <CartPage />, loader: cartPageLoader },
       {
         path: '/detail/:productId',

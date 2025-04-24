@@ -7,7 +7,7 @@ export const getBannerData = async () => {
     const res = await axios.get(`${BASE_URL}`)
     return res.data
   } catch (e) {
-    console.log('err----', e)
+    console.error('error | ', e)
     throw e
   }
 }
