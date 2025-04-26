@@ -7,11 +7,9 @@ const AboutPage = () => {
   const dispatch = useDispatch()
   const increase = num => {
     dispatch(increment(num))
-    // console.log('증가 버튼 클릭')
   }
   const decrease = () => {
     dispatch(decrement())
-    // console.log('증가 버튼 클릭')
   }
   return (
     <main>

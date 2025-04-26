@@ -4,7 +4,7 @@ export const counterSlice = createSlice({
   name: 'counter', // 고유해야함, 보통 상태 이름 그대로 사용
   initialState: {
     count: 0,
-    label: '카운터',
+    label: 'COUNTER',
   },
   reducers: {
     increment: (state, action) => {
