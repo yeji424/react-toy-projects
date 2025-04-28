@@ -1,0 +1,44 @@
+h2 {
+  color: #494949;
+  padding: 0.7rem 0;
+}
+.weatherInfo {
+  background-color: white;
+  max-width: 500px;
+  min-width: 300px;
+  min-height: 200px;
+  /* 데이터가 로드될 떄 데이터 생성으로 레이아웃 피처?되는걸 막기위해 설정 */
+  /* 래핑해줌 그냥 height는 삐져나감 */
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  color: rgb(228, 228, 228);
+  background-color: #acacac;
+}
+.location {
+  font-size: 1rem;
+}
+.temperature {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+.btnList {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.btnList button {
+  color: #828282;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  transition: 0.3s ease;
+}
+.btnList button:hover {
+  background-color: #acacac;
+  color: rgb(228, 228, 228);
+}

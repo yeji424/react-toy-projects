@@ -1,0 +1,12 @@
+li {
+  color: rgb(139, 139, 139);
+  padding: 0.5rem;
+  transition: 0.3s ease;
+}
+li:hover {
+  color: rgb(58, 58, 58);
+}
+.active {
+  color: rgb(58, 58, 58);
+  font-weight: bold;
+}
