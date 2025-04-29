@@ -4,18 +4,18 @@ import css from './MenuList.module.css'
 const MenuList = () => {
   return (
     <ul>
-      <li>
-        <NavLink to="/" className={({ isActive }) => (isActive ? css.active : '')}>
-          날씨 API 활용
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/anotherPage" className={({ isActive }) => (isActive ? css.active : '')}>
-          다른 페이지
-        </NavLink>
-      </li>
+      <CustomNavLink to={'/'} label={'날씨 API 활용'} />
+      <CustomNavLink to={'/camping'} label={'야영장 API 활용'} />
     </ul>
   )
 }
+
+const CustomNavLink = ({ to, label }) => (
+  <li>
+    <NavLink to={to} className={({ isActive }) => (isActive ? css.active : '')}>
+      {label}
+    </NavLink>
+  </li>
+)
 
 export default MenuList

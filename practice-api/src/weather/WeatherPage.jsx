@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
 import css from './WeatherPage.module.css'
-import { getCountryData, getCurrentData } from './useWeatherApi'
+import { useWeather } from './useWeatherApi'
 import { useSearchParams } from 'react-router-dom'
 import { Button } from './Button'
 
 const WeatherPage = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const city = searchParams.get('city')
-  const [weatherData, setWeatherData] = useState(null)
+  // const [weatherData, setWeatherData] = useState(null)
 
   const cityButtons = [
     { id: 'current', label: '현재위치' },
@@ -16,23 +16,25 @@ const WeatherPage = () => {
     { id: 'paris', label: '파리' },
   ]
 
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      try {
-        let data
-        if (city) {
-          data = await getCountryData(city)
-        } else {
-          data = await getCurrentData()
-        }
-        console.log('Weather Data : ', data)
-        setWeatherData(data)
-      } catch (e) {
-        console.error('ERROR | ', e)
-      }
-    }
-    fetchWeatherData()
-  }, [city])
+  const { data: weatherData, isLoading, isError } = useWeather(city)
+
+  // useEffect(() => {
+  //   const fetchWeatherData = async () => {
+  //     try {
+  //       let data
+  //       if (city) {
+  //         data = await getCountryData(city)
+  //       } else {
+  //         data = await getCurrentData()
+  //       }
+  //       console.log('Weather Data : ', data)
+  //       setWeatherData(data)
+  //     } catch (e) {
+  //       console.error('ERROR | ', e)
+  //     }
+  //   }
+  //   fetchWeatherData()
+  // }, [city])
 
   const handleChangeCity = city => {
     if (city === 'current') {
@@ -42,6 +44,8 @@ const WeatherPage = () => {
     }
   }
 
+  isLoading && <p>Loading...</p>
+  isError && <p>ERROR...</p>
   return (
     <main>
       <h2>오늘의 날씨 정보</h2>
