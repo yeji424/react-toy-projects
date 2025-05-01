@@ -1,5 +1,5 @@
 {
-  "name": "practice-api",
+  "name": "front",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,12 +11,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.74.7",
-    "@tanstack/react-query-devtools": "^5.74.7",
+    "@reduxjs/toolkit": "^2.7.0",
     "axios": "^1.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.5.2"
+    "react-quill-new": "^3.4.6",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.5.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -28,7 +29,6 @@
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
-    "gh-pages": "^6.3.0",
     "globals": "^15.15.0",
     "prettier": "^3.5.3",
     "vite": "^6.2.0"

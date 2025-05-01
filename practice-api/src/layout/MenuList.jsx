@@ -6,6 +6,7 @@ const MenuList = () => {
     <ul>
       <CustomNavLink to={'/'} label={'날씨 API 활용'} />
       <CustomNavLink to={'/camping'} label={'야영장 API 활용'} />
+      <CustomNavLink to={'/kakao-map'} label={'카카오맵 API 활용'} />
     </ul>
   )
 }
