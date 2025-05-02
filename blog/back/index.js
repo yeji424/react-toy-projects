@@ -6,14 +6,15 @@ const app = express();
 const port = process.env.PORT || 4000; // 나중에 환경변수로
 
 import cors from "cors";
+// 프론트, 백이 서로 쿠키 공유하면서 보안요구가 나타남
+// 명시적인 url이 필요했음 : origin
 app.use(
   cors({
     origin: process.env.FRONT_URL || "http://localhost:5173", // 나중에 환경변수로
     credentials: true, // node에서 true로 설정하면 쿠키를 포함한 요청을 허용합니다 라는 뜻
   })
 );
-// 프론트, 백이 서로 쿠키 공유하면서 보안요구가 나타남
-// 명시적인 url이 필요했음 : origin
+
 app.use(express.json()); // 전역으로 미들웨어 연결
 
 // nodejs에서 쿠키를 파싱할 수 있게끔
@@ -29,6 +30,14 @@ const mongoUrl = `${process.env.MONGODB_URI.replace(
 ).replace("<pass>", process.env.MONGODB_PASS)}/${
   process.env.MONGODB_NAME
 }?retryWrites=true&w=majority&appName=Cluster0`;
+
+const cookiesOption = {
+  httpOnly: true, // JS에서 접근이 불가함
+  maxAge: 1000 * 60 * 60 * 24,
+  secure: process.env.NODE_ENV === "production", // HTTP 사용 시 true로 설정
+  sameSite: "strict", // CSRF 공격 방지
+  path: "/",
+};
 
 mongoose
   .connect(mongoUrl)
@@ -87,16 +96,10 @@ app.post("/login", async (req, res) => {
       const token = jwt.sign(payload, secretKey, {
         expiresIn: tokenLife,
       });
-      res
-        .cookie("token", token, {
-          httpOnly: true, // JS에서 접근이 불가함
-          // secure: process.env.NODE_ENV === "production",  HTTP 사용 시 true로 설정
-          sameSite: "Strict", // CSRF 공격 방지
-        })
-        .json({
-          id: userDoc._id,
-          username,
-        });
+      res.cookie("token", token, cookiesOption).json({
+        id: userDoc._id,
+        username,
+      });
     }
   } catch (e) {
     console.error("SERVER ERROR | ", e);
@@ -108,23 +111,24 @@ app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   console.log("쿠키", token);
   if (!token) {
-    return res.status(401).json({ error: "로그인 필요" });
+    return res.json({ error: "로그인 필요" });
   }
+
   jwt.verify(token, secretKey, (err, info) => {
     if (err) {
-      return res.status(401).json({ error: "로그인 필요" });
+      return res.json({ error: "로그인 필요" });
     }
     res.json(info);
   });
 });
 
 app.post("/logout", (req, res) => {
-  res
-    .cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0),
-    })
-    .json({ message: "로그아웃 되었음" });
+  const logoutToken = {
+    ...cookiesOption,
+    maxAge: 0,
+  };
+
+  res.cookie("token", "", logoutToken).json({ message: "로그아웃 되었음" });
 });
 
 app.listen(port, () => {
