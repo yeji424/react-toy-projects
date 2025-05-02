@@ -14,50 +14,82 @@ const CreatePost = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
 
-  const handleContentChange = () => {
-    setContent(content)
+  const handleContentChange = value => {
+    setContent(value)
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
     setIsSubmitting(true)
     setError('')
+    console.log('제목', title)
+
+    if (!title || !summary || !content) {
+      setIsSubmitting(false)
+      setError('빈 칸 없이 모두 입력해주세요.')
+      return
+    }
+
+    // 업로드할 파일 정리
+    const data = new FormData()
+    data.set('title', title)
+    data.set('summary', summary)
+    data.set('content', content)
+
+    // 첨부파일이 있는 경우에만 추가
+    if (files[0]) {
+      //파일 크기 및 형식 검사 (아직 안함)
+      data.set('files', files[0])
+    }
+
     try {
-      // 기본 유효성 검사
-      if (title || summary || content) {
-        setError('모든 필드를 입력해주세요')
-        return
-      }
-      // 업로드할 파일 정리
-      const data = new FormData()
-      data.set('title', title)
-      data.set('summary', summary)
-      data.set('content', content)
-
-      // 첨부파일이 있는 경우에만 추가
-      if (files[0]) {
-        //파일 크기 및 형식 검사 (아직 안함)
-
-        data.set('files', files[0])
-      }
-
-      try {
-        setIsSubmitting(true)
-        const postData = await createPost(data)
-        console.log('등록 성공', postData)
-
-        setIsSubmitting(false)
-        navigate('/')
-      } catch (e) {
-        console.log('ERROR | ', e)
-      }
+      const postData = await createPost(data)
+      console.log('등록 성공', postData)
+      setIsSubmitting(false)
+      navigate('/')
     } catch (e) {
-      console.log('ERROR | ', e)
-      setError('', e.message)
+      console.log('등록 실패 : ', e)
     } finally {
       setIsSubmitting(false)
       setError('')
     }
+
+    // try {
+    //   // 기본 유효성 검사
+    //   if (title || summary || content) {
+    //     setError('모든 필드를 입력해주세요')
+    //     return
+    //   }
+    //   // 업로드할 파일 정리
+    //   const data = new FormData()
+    //   data.set('title', title)
+    //   data.set('summary', summary)
+    //   data.set('content', content)
+
+    //   // 첨부파일이 있는 경우에만 추가
+    //   if (files[0]) {
+    //     //파일 크기 및 형식 검사 (아직 안함)
+
+    //     data.set('files', files[0])
+    //   }
+
+    //   try {
+    //     setIsSubmitting(true)
+    //     const postData = await createPost(data)
+    //     console.log('등록 성공', postData)
+
+    //     setIsSubmitting(false)
+    //     navigate('/')
+    //   } catch (e) {
+    //     console.log('ERROR | ', e)
+    //   }
+    // } catch (e) {
+    //   console.log('ERROR | ', e)
+    //   setError('', e.message)
+    // } finally {
+    //   setIsSubmitting(false)
+    //   setError('')
+    // }
   }
   return (
     <main className={css.createpost}>
@@ -80,14 +112,13 @@ const CreatePost = () => {
           value={summary}
           onChange={e => setSummary(e.target.value)}
         />
-        <label htmlFor="file">파일</label>
+        <label htmlFor="files">파일</label>
         <input
           type="file"
-          id="file"
-          name="file"
+          id="files"
+          name="files"
           accept="image/*"
-          value={files}
-          onChange={e => setFiles(e.target.value)}
+          onChange={e => setFiles(e.target.files)}
         />
         <label htmlFor="content">내용</label>
         <div className={css.editorWrapper}>

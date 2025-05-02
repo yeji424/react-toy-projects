@@ -3,7 +3,7 @@ import express from "express";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 4000; // 나중에 환경변수로
+const port = process.env.PORT || 4000;
 
 import cors from "cors";
 // 프론트, 백이 서로 쿠키 공유하면서 보안요구가 나타남
@@ -127,10 +127,62 @@ app.post("/logout", (req, res) => {
     ...cookiesOption,
     maxAge: 0,
   };
-
   res.cookie("token", "", logoutToken).json({ message: "로그아웃 되었음" });
 });
 
+// 게시글 작성
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+import { postModel } from "./model/post.js";
+
+const uploadDir = "uploads";
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage });
+
+app.post("/postWrite", upload.single("files"), async (req, res) => {
+  try {
+    console.log(req.file); // 파일 정보
+    console.log(req.body);
+    const { token } = req.cookies;
+    if (!token) {
+      return res.json({ error: "로그인 필요" });
+    }
+    const userInfo = jwt.verify(token, secretKey); // 토큰 검증
+    console.log(userInfo);
+    const { title, summary, content } = req.body;
+    const author = userInfo.username;
+    const postData = {
+      title,
+      summary,
+      content,
+      cover: req.file ? req.file.path : null, // 업로드할 파일 경로
+      author,
+    };
+
+    await postModel.create(postData);
+    console.log("게시글 저장 완료");
+    res.json({ message: "게시글 작성 완료" });
+    // console.log("제목", title);
+    // console.log("요약내용", summary);
+    // console.log("내용", content);
+  } catch (e) {
+    console.log("게시글 작성 에러", e);
+    return res.status(500).json({ error: "게시글 작성 실패" });
+  }
+});
 app.listen(port, () => {
   console.log(`${port} 포트에서 돌고있음`);
 });
