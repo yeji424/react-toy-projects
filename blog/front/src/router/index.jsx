@@ -3,6 +3,8 @@ import DefaultLayout from '../common/DefaultLayout'
 import RegisterPage from '../pages/RegisterPage'
 import LoginPage from '../pages/LoginPage'
 import CreatePost from '../pages/CreatePost.jsx'
+import PostListPage from '../pages/PostListPage'
+import PostDetailPage from '../pages/PostDetailPage.jsx'
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -11,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>메인페이지</div>,
+        element: <PostListPage />,
       },
       {
         path: '/register',
@@ -24,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: '/create',
         element: <CreatePost />,
+      },
+      {
+        path: '/detail/:postId',
+        element: <PostDetailPage />,
       },
     ],
   },

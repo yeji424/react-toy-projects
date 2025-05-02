@@ -22,7 +22,7 @@ import cookieParser from "cookie-parser";
 app.use(cookieParser()); // 전역으로 사용 가능하도록 함
 
 import mongoose from "mongoose";
-import { userModel } from "./model/user.js";
+import { userModel } from "./models/user.js";
 
 const mongoUrl = `${process.env.MONGODB_URI.replace(
   "<user>",
@@ -49,8 +49,7 @@ mongoose
   });
 
 import bcrypt from "bcryptjs";
-const saltRounds = process.env.JWT_SALT_ROUND; // salt 길이
-
+const saltRounds = parseInt(process.env.JWT_SALT_ROUND, 10); // salt길이
 import jwt from "jsonwebtoken";
 const secretKey = process.env.JWT_SCR_KEY;
 const tokenLife = process.env.JWT_EXP;
@@ -134,7 +133,18 @@ app.post("/logout", (req, res) => {
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { postModel } from "./model/post.js";
+import { postModel } from "./models/post.js";
+
+// 프론트에서 정적 데이터 연결하라는 설정
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+app.get("/uploads/:filename", (req, res) => {
+  const { filename } = req.params;
+  res.sendFile(path.join(__dirname, "uploads", filename));
+});
 
 const uploadDir = "uploads";
 if (!fs.existsSync(uploadDir)) {
@@ -181,6 +191,30 @@ app.post("/postWrite", upload.single("files"), async (req, res) => {
   } catch (e) {
     console.log("게시글 작성 에러", e);
     return res.status(500).json({ error: "게시글 작성 실패" });
+  }
+});
+
+app.get("/postList", async (req, res) => {
+  try {
+    const posts = await postModel.find().sort({ createdAt: -1 }).limit(3);
+    res.json(posts);
+  } catch (e) {
+    console.log("게시글 가져오기 에러", e);
+    return res.status(500).json({ error: "게시글 가져오기 실패" });
+  }
+});
+
+app.get("/postDetail/:postId", async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const post = await postModel.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: "게시글을 찾을 수 없습니다." });
+    }
+    res.json(post);
+  } catch (e) {
+    console.log("게시글 상세 조회 에러", e);
+    return res.status(500).json({ error: "게시글 가져오기 실패" });
   }
 });
 app.listen(port, () => {
