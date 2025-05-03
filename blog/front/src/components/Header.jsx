@@ -36,14 +36,16 @@ export const Header = () => {
   return (
     <header className={css.header}>
       <h1>
-        <Link to={'/'}>TOKTOKLOG</Link>
+        <Link to={'/'}>Post Log</Link>
       </h1>
       <nav>
         {username ? (
           <>
-            <MenuLink to="/create" label="글쓰기" />
-            <button onClick={handleLogout}>로그아웃</button>
             <span>{username}</span>
+            <button className={css.logoutbtn} onClick={handleLogout}>
+              로그아웃
+            </button>
+            <MenuLink to="/create" label="글쓰기" />
           </>
         ) : (
           <>

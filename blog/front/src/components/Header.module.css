@@ -5,9 +5,29 @@
   background-color: #eaeaea;
   padding: 1rem;
 }
+.header h1 a,
+.header nav a {
+  color: rgb(156, 156, 156);
+  transition: 0.2s;
+}
+.header h1 a:hover,
+.header nav a:hover {
+  color: rgb(20, 20, 20);
+}
+.header nav a {
+}
+
 .header a,
 .header span,
 .header button {
   display: inline-block;
   padding: 0.25rem 0.3rem;
+}
+.logoutbtn {
+  margin-left: 0.3rem;
+  margin-right: 0.6rem;
+  color: gray;
+}
+.logoutbtn:hover {
+  color: rgb(20, 20, 20);
 }

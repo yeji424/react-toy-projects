@@ -26,8 +26,7 @@ const PostListPage = () => {
 
   return (
     <main className={css.postlistpage}>
-      <h2>PostListPage</h2>
-
+      <h2></h2>
       {error && <p className={css.error}>{error}</p>}
       {loading && <p>로딩중 ...</p>}
       {!loading && postList.length === 0 && <p>게시물이 없습니다.</p>}

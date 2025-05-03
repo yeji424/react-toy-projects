@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import css from './registerpage.module.css'
+import css from './LoginPage.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setUserInfo } from '../store/userSlice'
@@ -86,7 +86,7 @@ const LoginPage = () => {
   }, [redirect, navigate])
   return (
     <main className={css.loginpage}>
-      <h2>로그인</h2>
+      <h2></h2>
       {loginStatus && <strong>{loginStatus}</strong>}
       <form className={css.container} onSubmit={login}>
         <input type="text" placeholder="아이디" value={username} onChange={handleUsernameChange} />

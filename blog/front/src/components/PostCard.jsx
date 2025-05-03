@@ -15,8 +15,8 @@ export const PostCard = ({ post }) => {
         <img src={`${import.meta.env.VITE_BACK_URL}/${cover}`} alt="{title}" />
       </p>
       <p className={css.title}>{summary}</p>
-      <p className={css.createAt}>{formatDate(createdAt)}</p>
       <p className={css.author}>{author}</p>
+      <p className={css.createAt}>{formatDate(createdAt)}</p>
     </article>
   )
 }

@@ -1,8 +1,8 @@
 .container {
   width: 60%;
   margin: auto;
-  border: 1px solid red;
-
+  /* border: 1px solid red; */
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -14,17 +14,33 @@
   outline: none;
 }
 .container input:focus {
-  background-color: lightgray;
-  color: white;
+  background-color: rgb(234, 234, 234);
+  color: rgb(55, 55, 55);
 }
 .container strong {
-  color: red;
+  color: rgb(158, 158, 158);
   font-weight: normal;
   font-size: 0.75em;
-  padding: 1em;
+  padding: 1px 0.5em;
+  padding-bottom: 0.1rem;
 }
 .container button {
-  padding: 1em;
-  background-color: lightskyblue;
+  margin-top: 1.5rem;
+  padding: 1em 1.2rem;
+  background-color: rgb(170, 170, 170);
+  color: white;
   align-self: center;
+  transition: 0.3s;
+}
+.container button:hover {
+  margin-top: 1.5rem;
+  padding: 1em 1.2rem;
+  background-color: rgb(93, 93, 93);
+  color: white;
+  align-self: center;
+}
+strong {
+  /* border: 1px red solid; */
+  padding-left: 1rem;
+  color: gray;
 }
